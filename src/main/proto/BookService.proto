@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package book_service;
+
+option java_package = "com.lordrahl.bookservice";
+option java_multiple_files = true;
+option java_outer_classname = "BookServiceProto";
+
+
+service BookService {
+  rpc NewAuthor(AuthorCreateRequest) returns (AuthorResponse);
+  rpc NewBook (BookCreateRequest) returns (BookResponse);
+  rpc AllBooks(BookFindRequest) returns (stream BookResponse);
+}
+
+message AuthorCreateRequest {
+  string firstName = 1;
+  string lastName = 2;
+  string email = 3;
+  string phone = 4;
+}
+message AuthorResponse {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string email = 4;
+  string phone = 5;
+}
+
+message BookCreateRequest {
+  string title = 1;
+  string isbn = 2;
+  string edition = 3;
+  repeated AuthorCreateRequest authors = 4;
+}
+message BookFindRequest {
+  string title = 1;
+}
+
+message BookResponse {
+  string id = 1;
+  string title = 2;
+  string isbn = 3;
+  string edition = 4;
+  repeated AuthorCreateRequest authors = 5;
+}

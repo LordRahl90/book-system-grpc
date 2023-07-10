@@ -1,0 +1,22 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+#    use elasticsearch
+    url: jdbc:mysql://localhost:3306/bet_manager
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+grpc:
+  server:
+    port: 52003
+
+elastic:
+  host: localhost:9200
