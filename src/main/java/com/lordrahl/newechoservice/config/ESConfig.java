@@ -11,17 +11,21 @@ import org.elasticsearch.client.RestClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.List;
 
 @Configuration
 public class ESConfig {
+    private final ElasticConfig elasticConfig;
+
+    public ESConfig(ElasticConfig elasticConfig) {
+        this.elasticConfig = elasticConfig;
+    }
 
     @Bean
     public ElasticsearchClient elasticsearchClient() {
         Header basicHeader = new BasicHeader("Content-Type", "application/json");
         Header[] headers = new Header[]{basicHeader};
 
-        RestClient restClient = RestClient.builder(HttpHost.create("localhost:9200"))
+        RestClient restClient = RestClient.builder(HttpHost.create(elasticConfig.getHost()))
                 .setDefaultHeaders(headers)
                 .build();
 

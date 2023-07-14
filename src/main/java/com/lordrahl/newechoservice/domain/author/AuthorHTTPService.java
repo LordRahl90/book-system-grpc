@@ -15,8 +15,8 @@ public class AuthorHTTPService implements AuthorService {
     private final ESConfig esConfig;
     private final Logger logger = Logger.getLogger(AuthorHTTPService.class.getName());
 
-    public AuthorHTTPService(ESConfig esClient) {
-        this.esConfig = esClient;
+    public AuthorHTTPService(ESConfig esConfig) {
+        this.esConfig = esConfig;
     }
 
     @Override
